@@ -4,7 +4,11 @@ const cors = require("cors")
 // const { Router,json } =  require("express")
 const app = express()
 app.use(express.json())
+const cookieParser = require("cookie-parser")
+
 app.use(cors())
+app.use(cookieParser())
+
 const port = 4000
 // this is for do not stop the server we use cluster
 const cluster = require("cluster")
@@ -18,7 +22,6 @@ if(cluster.isMaster){
     })
 }else{
 
-    
          // =======Create DataBase In Sql Page ========
 // app.get("/cdb",(req,res)=>{
 //     const q = "CREATE DATABASE mysqlblog"
@@ -61,10 +64,13 @@ app.get("/DropT",(req,res)=>{
 
 // routes require
 const authRoutes = require("./routes/authRoutes")
+const postRoutes = require("./routes/postRoutes")
 // const contactRoutes = require("./routes/contactRoutes")
 
 // use routes which required
+
 app.use("/auth",authRoutes)
+app.use("/posts",postRoutes)
 // app.use("/contactEmail",contactRoutes)
 
 

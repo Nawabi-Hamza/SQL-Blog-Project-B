@@ -53,8 +53,11 @@ const login = (req,res)=>{
     })
 
 }
-const logout = ()=>{
-    console.log("logout function")
+const logout = (req,res)=>{
+    res.clearCookie("access_token",{
+    sameSite:"none",
+    secre:true,
+    }).status(200).json("user logout successfuly")
 }
 module.exports = {
    register,
