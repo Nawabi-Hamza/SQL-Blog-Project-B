@@ -5,7 +5,6 @@ const db = require("../db")
 const bcrypt = require("bcryptjs")
 const cookie = require("cookie-parser")
 
-
     // Register Section 
 const register = (req,res)=>{
     // console.log("register function")
@@ -49,9 +48,7 @@ const login = (req,res)=>{
             httpOnly:true
         // }).status(200).json(data[0])
          }).status(200).json(other)
-
     })
-
 }
 const logout = (req,res)=>{
     res.clearCookie("access_token",{
