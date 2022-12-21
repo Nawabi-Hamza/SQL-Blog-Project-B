@@ -1,6 +1,8 @@
 const db = require("./db")
 const express = require("express")
 const cors = require("cors")
+const multer = require("multer")
+
 // const { Router,json } =  require("express")
 const app = express()
 app.use(express.json())
@@ -65,13 +67,37 @@ app.get("/DropT",(req,res)=>{
 // routes require
 const authRoutes = require("./routes/authRoutes")
 const postRoutes = require("./routes/postRoutes")
+const mail = require("./routes/contactRoutes")
 // const contactRoutes = require("./routes/contactRoutes")
 
 // use routes which required
 
 app.use("/auth",authRoutes)
 app.use("/posts",postRoutes)
+app.use("/contactMail",mail)
 // app.use("/contactEmail",contactRoutes)
+
+
+
+
+// Upload Image in Database in different table
+        // make diskStorage or create storage
+        const storage = multer.diskStorage({ 
+            destination:(req,file,cb)=>{
+                cb(null,"../Frontend/public/upload")
+            },
+            filename:(req,file,cb)=>{
+                cb(null,Date.now()+ file.originalname)
+            }
+        })
+        // upload Image 
+        const upload = multer({storage})
+    // make api for send image from postman or frontend
+    app.post("/upload",upload.single("file"),(req,res)=>{
+        const file = req.file;
+        res.status(200).json(file.filename)
+        console.log('image API')
+    })
 
 
 

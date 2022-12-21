@@ -7,7 +7,8 @@ var contactMail = nodemailer.createTransport({
     service: 'gmail',
     auth: {
     user: 'hamza.nawabi119@gmail.com',
-    pass: 'tvkfkmfywdghpvat'
+    // pass: 'tvkfkmfywdghpvat'
+    pass:"ifxwgfjzgnqbbgee"
     }
 });
 contactMail.verify((error)=>{
