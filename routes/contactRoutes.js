@@ -42,10 +42,10 @@ from:"hamza.nawabi119@gmail.com",
 to:emailto,
 subject:"message Send From The Nawabi Blog",
 html:`
-User_Name:<b>${name}</b><br/>
+User_Page:<b>${doctor}</b><br/>
+Name:<b>${name}</b><br/>
 User_Mail:<b>${email}</b><br/>
 User_Message:<b>${message}</b><br/>
-Doctor_Name:<b>${doctor}</b><br/>
 `
 }
 contactMail.sendMail(mail,(error)=>{

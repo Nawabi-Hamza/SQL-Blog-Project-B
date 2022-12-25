@@ -10,8 +10,8 @@ const register = (req,res)=>{
     // console.log("register function")
     // check if user already exist
     const q = "SELECT * FROM users WHERE email = ? OR name = ?"
-    // const value = [req.body.name,req.body.email]
-    db.query(q,[req.body.email,req.body.name],(error,data)=>{
+    // const value = [req.body.name,req.body.email]    
+        db.query(q,[req.body.email,req.body.name],(error,data)=>{
         if(error) return res.status(500).json(error)
         if(data.length) return res.status(409).json({error:"User Already Exist!"})
  
@@ -55,6 +55,7 @@ const logout = (req,res)=>{
     sameSite:"none",
     secre:true,
     }).status(200).json("user logout successfuly")
+
 }
 module.exports = {
    register,

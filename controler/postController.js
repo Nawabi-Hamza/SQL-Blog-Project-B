@@ -38,7 +38,17 @@ const addPost = (req,res)=>{
 }
 
 const updatePost = (req,res)=>{
-    console.log("updagte posts")
+    // console.log("updagte posts")
+    const postId = req.params.id;
+    // const q = "UPDATE `posts` SET `title`=?,`description`=?,`cat`=?,`img`=? WHERE id = ? AND user_id "
+    // const q = "UPDATE `posts` SET `title`=?,`description`=?,`cat`=?,`img`=?,`user_id`=? WHERE  posts.id = 25"
+    const q = "UPDATE `posts` SET `title` =?, `description` = ?, `cat` = ? ,`img`=? WHERE `posts`.`id` = ?;"
+    // const u_id = 14
+    const value = [req.body.title,req.body.description,req.body.cat,req.body.img]
+    db.query(q,[ ...value,postId ],(error,data)=>{
+        if(error) return res.status(500).json(error)
+        return res.json(data)
+    })
 }
 
 
